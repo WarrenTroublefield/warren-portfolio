@@ -10,9 +10,9 @@ export default function App() {
   }, [darkMode]);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white transition-colors duration-300 font-inter">
+    <div className="min-h-screen bg-white dark:bg-neutral-900 text-black dark:text-white transition-colors duration-300 font-inter">
       <header className="flex justify-between items-center px-6 py-6 max-w-5xl mx-auto">
-        <h1 className="text-xl font-bold">Warren Troublefield</h1>
+        <h1 className="text-lg font-semibold tracking-tight">Warren Troublefield</h1>
         <button
           onClick={() => setDarkMode(!darkMode)}
           className="p-1 rounded transition hover:bg-neutral-200 dark:hover:bg-neutral-800"
@@ -23,25 +23,44 @@ export default function App() {
       </header>
 
       <main className="px-6 max-w-3xl mx-auto">
-        <section className="mt-12 mb-16">
-          <h2 className="text-4xl md:text-5xl font-semibold mb-4">Hi, I'm Warren</h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed max-w-2xl">
-            I'm an aspiring Software Engineer and Information Security Analyst based in the US.
-            I enjoy solving real-world problems with code, learning about secure systems,
-            and building tools that help protect people and data.
+        <section className="mt-16 mb-20">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">Hi, I'm Warren</h2>
+          <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+            I’m an aspiring Software Engineer and Information Security Analyst who’s passionate about ethical hacking, full-stack development, and building secure systems that solve real-world problems. 
+            I enjoy learning how technology works under the hood — and how to protect it.
           </p>
         </section>
 
-        <section className="mb-16" id="projects">
-          <h3 className="text-2xl font-bold mb-4">Projects</h3>
-          <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 space-y-2">
-            <li>Project 1 — Coming Soon</li>
-            <li>Project 2 — Coming Soon</li>
+        <section id="projects" className="mb-20">
+          <h3 className="text-2xl font-semibold mb-4">Projects</h3>
+          <ul className="space-y-4">
+            <li>
+              <a
+                href="#"
+                className="text-blue-500 hover:underline block text-lg"
+              >
+                🔐 Secure File Transfer App
+              </a>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                A tool to safely send encrypted files over a network using basic cryptography techniques.
+              </p>
+            </li>
+            <li>
+              <a
+                href="#"
+                className="text-blue-500 hover:underline block text-lg"
+              >
+                🕵️ Network Scanner Tool
+              </a>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                A Python-based scanner that detects open ports and services on local or remote networks.
+              </p>
+            </li>
           </ul>
         </section>
 
-        <section id="contact" className="mb-20">
-          <h3 className="text-2xl font-bold mb-4">Contact</h3>
+        <section id="contact" className="mb-24">
+          <h3 className="text-2xl font-semibold mb-4">Contact</h3>
           <p className="mb-1">
             <a href="mailto:swegmoneylife@gmail.com" className="text-blue-500 hover:underline">Email</a>
           </p>
