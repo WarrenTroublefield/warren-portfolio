@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { Sun, Moon } from 'lucide-react';
+import YouTubeWidget from "./components/YouTubeWidget";
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -30,6 +31,8 @@ export default function App() {
             I enjoy learning how technology works under the hood — and how to protect it.
           </p>
         </section>
+
+        <YouTubeWidget />
 
         <section id="projects" className="mb-20">
           <h3 className="text-2xl font-semibold mb-4">Projects</h3>
