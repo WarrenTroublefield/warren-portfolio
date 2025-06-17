@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 
 const YOUTUBE_API_KEY = "AIzaSyAU-dDw5TzeGtAmFW8YomrKf47XufyVKtc";
-const CHANNEL_ID = "UC7RuUXnZC2MY0eoD_C_ey6w";
+const CHANNEL_ID = "UCRzwEMxXuwLCJH_Va3QCNUA";
 
 export default function YouTubeWidget() {
   const [videoId, setVideoId] = useState(null);
