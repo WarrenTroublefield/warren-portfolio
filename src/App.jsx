@@ -25,16 +25,19 @@ function App() {
             I’m an aspiring Software Engineer and Information Security Analyst who’s passionate about ethical hacking, full-stack development, and building secure systems that solve real-world problems. I enjoy learning how technology works under the hood — and how to protect it.
           </p>
 
+          {/* Latest YouTube Video */}
           <section className="mb-10">
             <h3 className="text-2xl font-semibold mb-2">Latest Video</h3>
             <YouTubeWidget />
           </section>
 
+          {/* Spotify Now Playing */}
           <section className="mb-10">
             <h3 className="text-2xl font-semibold mb-2">Now Playing</h3>
             <SpotifyNowPlaying />
           </section>
 
+          {/* Projects Section */}
           <section className="mb-10">
             <h3 className="text-2xl font-semibold mb-2">Projects</h3>
             <ul className="space-y-4">
@@ -67,6 +70,7 @@ function App() {
             </ul>
           </section>
 
+          {/* Contact Section */}
           <section>
             <h3 className="text-2xl font-semibold mb-2">Contact</h3>
             <ul className="space-y-2">
