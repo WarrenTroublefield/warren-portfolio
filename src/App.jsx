@@ -9,9 +9,9 @@ function App() {
         <header className="flex items-center justify-between mb-8">
           <h1 className="font-bold text-lg">Warren Troublefield</h1>
           <button
-            onClick={() => {
-              document.documentElement.classList.toggle("dark");
-            }}
+            onClick={() =>
+              document.documentElement.classList.toggle("dark")
+            }
             className="text-2xl"
             aria-label="Toggle Dark Mode"
           >
@@ -22,22 +22,26 @@ function App() {
         <main>
           <h2 className="text-4xl font-bold mb-4">Hi, I'm Warren</h2>
           <p className="mb-10 text-gray-700 dark:text-gray-300">
-            I’m an aspiring Software Engineer and Information Security Analyst who’s passionate about ethical hacking, full-stack development, and building secure systems that solve real-world problems. I enjoy learning how technology works under the hood — and how to protect it.
+            I’m an aspiring Software Engineer and Information Security Analyst
+            who’s passionate about ethical hacking, full-stack development, and
+            building secure systems that solve real-world problems. I enjoy
+            learning how technology works under the hood — and how to protect
+            it.
           </p>
 
-          {/* Latest YouTube Video */}
+          {/* YouTube Widget */}
           <section className="mb-10">
             <h3 className="text-2xl font-semibold mb-2">Latest Video</h3>
             <YouTubeWidget />
           </section>
 
-          {/* Spotify Now Playing */}
+          {/* Spotify Widget */}
           <section className="mb-10">
             <h3 className="text-2xl font-semibold mb-2">Now Playing</h3>
             <SpotifyNowPlaying />
           </section>
 
-          {/* Projects Section */}
+          {/* Projects */}
           <section className="mb-10">
             <h3 className="text-2xl font-semibold mb-2">Projects</h3>
             <ul className="space-y-4">
@@ -51,7 +55,8 @@ function App() {
                   🔐 Secure File Transfer App
                 </a>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                  A tool to safely send encrypted files over a network using basic cryptography techniques.
+                  A tool to safely send encrypted files over a network using
+                  basic cryptography techniques.
                 </p>
               </li>
               <li>
@@ -64,23 +69,30 @@ function App() {
                   🕵️ Network Scanner Tool
                 </a>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                  A Python-based scanner that detects open ports and services on local or remote networks.
+                  A Python-based scanner that detects open ports and services on
+                  local or remote networks.
                 </p>
               </li>
             </ul>
           </section>
 
-          {/* Contact Section */}
+          {/* Contact */}
           <section>
             <h3 className="text-2xl font-semibold mb-2">Contact</h3>
             <ul className="space-y-2">
               <li>
-                <a href="mailto:swegmoneylife@gmail.com" className="text-blue-500 hover:underline">
+                <a
+                  href="mailto:swegmoneylife@gmail.com"
+                  className="text-blue-500 hover:underline"
+                >
                   Email
                 </a>
               </li>
               <li>
-                <a href="https://linkedin.com" className="text-blue-500 hover:underline">
+                <a
+                  href="https://linkedin.com"
+                  className="text-blue-500 hover:underline"
+                >
                   LinkedIn
                 </a>
               </li>
