@@ -10,8 +10,7 @@ function App() {
           <h1 className="font-bold text-lg">Warren Troublefield</h1>
           <button
             onClick={() => {
-              const html = document.documentElement;
-              html.classList.toggle("dark");
+              document.documentElement.classList.toggle("dark");
             }}
             className="text-2xl"
             aria-label="Toggle Dark Mode"
@@ -23,10 +22,7 @@ function App() {
         <main>
           <h2 className="text-4xl font-bold mb-4">Hi, I'm Warren</h2>
           <p className="mb-10 text-gray-700 dark:text-gray-300">
-            I’m an aspiring Software Engineer and Information Security Analyst
-            who’s passionate about ethical hacking, full-stack development, and
-            building secure systems that solve real-world problems. I enjoy
-            learning how technology works under the hood — and how to protect it.
+            I’m an aspiring Software Engineer and Information Security Analyst who’s passionate about ethical hacking, full-stack development, and building secure systems that solve real-world problems. I enjoy learning how technology works under the hood — and how to protect it.
           </p>
 
           <section className="mb-10">
