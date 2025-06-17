@@ -36,7 +36,9 @@ export default function App() {
           <ul className="space-y-4">
             <li>
               <a
-                href="#"
+                href="https://github.com/WarrenTroublefield/secure-file-transfer"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-blue-500 hover:underline block text-lg"
               >
                 🔐 Secure File Transfer App
@@ -47,7 +49,9 @@ export default function App() {
             </li>
             <li>
               <a
-                href="#"
+                href="https://github.com/WarrenTroublefield/network-scanner-tool"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-blue-500 hover:underline block text-lg"
               >
                 🕵️ Network Scanner Tool
