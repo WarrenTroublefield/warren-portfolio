@@ -8,84 +8,79 @@ function App() {
     // Fetch YouTube data
     fetch("/yt-data.json")
       .then((res) => res.json())
-      .then((data) => setYoutubeData(data));
+      .then((data) => setYoutubeData(data))
+      .catch((err) => console.error("YouTube fetch error:", err));
 
     // Fetch Spotify data
-    fetch("/spotify-data.json")
+    fetch("/api/spotify")
       .then((res) => res.json())
-      .then((data) => setSpotifyData(data));
+      .then((data) => setSpotifyData(data))
+      .catch((err) => console.error("Spotify fetch error:", err));
   }, []);
 
   return (
-    <div className="max-w-2xl mx-auto px-4 py-8">
+    <main className="max-w-xl mx-auto px-4 py-12">
       <h1 className="text-3xl font-bold mb-4">Hi, I'm Warren</h1>
-      <p className="mb-6 text-gray-700 dark:text-gray-300">
-        I’m an aspiring Software Engineer and Information Security Analyst who’s
-        passionate about ethical hacking, full-stack development, and building
-        secure systems that solve real-world problems. I enjoy learning how
-        technology works under the hood — and how to protect it.
+      <p className="text-gray-700 dark:text-gray-300 mb-8">
+        I’m an aspiring Software Engineer and Information Security Analyst
+        who’s passionate about ethical hacking, full-stack development, and
+        building secure systems that solve real-world problems. I enjoy
+        learning how technology works under the hood — and how to protect it.
       </p>
 
-      {/* --- YOUTUBE SECTION --- */}
-      <h2 className="text-xl font-semibold mb-2">Latest Video</h2>
-      {youtubeData ? (
-        <div className="mb-6">
-          <iframe
-            width="100%"
-            height="315"
-            src={`https://www.youtube.com/embed/${youtubeData.latestVideoId}`}
-            title="YouTube video player"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
-          <p className="text-sm text-gray-600 mt-2">
-            🎥 {youtubeData.subscriberCount} subscribers •{" "}
-            {youtubeData.viewCount} total views
-          </p>
-        </div>
-      ) : (
-        <p className="mb-6">📺 Loading YouTube data...</p>
-      )}
-
-      {/* --- SPOTIFY SECTION --- */}
-      <h2 className="text-xl font-semibold mb-2">Now Playing</h2>
-      {spotifyData && spotifyData.isPlaying ? (
-        <div className="mb-6 flex items-center gap-4">
-          <img
-            src={spotifyData.albumImageUrl}
-            alt="Album cover"
-            className="w-16 h-16 rounded shadow"
-          />
+      {/* YouTube Widget */}
+      <section className="mb-8">
+        <h2 className="text-xl font-semibold mb-2">📺 Latest Video</h2>
+        {youtubeData ? (
           <div>
-            <p className="font-medium">{spotifyData.title}</p>
-            <p className="text-sm text-gray-600">{spotifyData.artist}</p>
+            <iframe
+              className="w-full aspect-video rounded"
+              src={`https://www.youtube.com/embed/${youtubeData.latestVideoId}`}
+              title="Latest YouTube Video"
+              frameBorder="0"
+              allowFullScreen
+            ></iframe>
+            <p className="mt-2 text-sm text-gray-600">
+              👥 {youtubeData.subscriberCount} subscribers <br />
+              👁️ {youtubeData.viewCount} total views
+            </p>
           </div>
-        </div>
-      ) : (
-        <p className="mb-6">🎧 Not playing anything right now.</p>
-      )}
+        ) : (
+          <p className="text-sm text-gray-600">🧠 Loading YouTube data...</p>
+        )}
+      </section>
 
-      {/* --- CONTACT --- */}
-      <h2 className="text-xl font-semibold mt-10 mb-2">Contact</h2>
-      <p>
-        <a
-          href="mailto:swegmoneylife@gmail.com"
-          className="text-blue-600 hover:underline"
-        >
-          Email
-        </a>{" "}
-        ·{" "}
-        <a
-          href="https://linkedin.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-blue-600 hover:underline"
-        >
-          LinkedIn
-        </a>
-      </p>
-    </div>
+      {/* Spotify Widget */}
+      <section className="mb-8">
+        <h2 className="text-xl font-semibold mb-2">🎧 Now Playing</h2>
+        {spotifyData && spotifyData.isPlaying ? (
+          <div className="flex items-center space-x-4">
+            <img
+              src={spotifyData.albumImageUrl}
+              alt="Album cover"
+              className="w-16 h-16 rounded shadow"
+            />
+            <div>
+              <p className="font-medium">{spotifyData.title}</p>
+              <p className="text-sm text-gray-600">{spotifyData.artist}</p>
+            </div>
+          </div>
+        ) : (
+          <p className="text-sm text-gray-600">🛑 Not playing anything right now.</p>
+        )}
+      </section>
+
+      {/* Contact */}
+      <section>
+        <h2 className="text-xl font-semibold mb-2">Contact</h2>
+        <p className="text-sm text-blue-500">
+          <a href="mailto:swegmoneylife@gmail.com">Email</a> ·{" "}
+          <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">
+            LinkedIn
+          </a>
+        </p>
+      </section>
+    </main>
   );
 }
 
