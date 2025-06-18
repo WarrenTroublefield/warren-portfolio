@@ -10,10 +10,11 @@ import Projects from "./components/Projects";
 import Footer from "./components/Footer";
 import SpotifyDisplay from "./components/SpotifyDisplay";
 import YouTubeWidget from "./components/YouTubeWidget";
+import Callback from "./pages/Callback"; // <- Route to handle Spotify redirect
 
 function Home() {
   return (
-    <div className="font-sans max-w-3xl mx-auto px-6">
+    <div className="text-zinc-900 dark:text-white bg-white dark:bg-black font-sans max-w-3xl mx-auto px-6">
       <Intro
         name="Warren Troublefield"
         description="I'm a Software Engineer and Information Security Analyst who’s passionate about ethical hacking, full-stack development, and building secure systems that solve real-world problems. I enjoy understanding how technology works under the hood — and how to defend it."
@@ -63,6 +64,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/callback" element={<Callback />} />
       </Routes>
     </Router>
   );
