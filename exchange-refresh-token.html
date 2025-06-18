@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Spotify Refresh Token Exchange</title>
+</head>
+<body>
+  <script>
+    const code = "AQDfLbSJf3bJqEhBjA7Iyji5bnNslWIRY0JQPaNyQytIcsooiay95d5n_1t5UC4p-HEAzDR9uErry2VtSWqyoQOhRdYMpIDy-N1IbeRq3uliOcCmVm6ZEPVNs1lawuTpfaPcQreV2f9fDNSXt5rHjvt1JvWmU5BUFNGpcTn4likOOCciyaunxyBgCrM-5Vr5nu5J4-wrXxyNaU7J1FNOtGmWa_Yu92PnWA-wItr2Aw";
+    const clientId = "ba8105e9eca94c089a6922df46ad2ad5";
+    const redirectUri = "https://warren-portfolio-eu71.vercel.app/callback";
+    const authHeader = "Basic YmE4MTA1ZTllY2E5NGMwODlhNjkyMmRmNDZhZDJhZDU6ODg5NjI0Y2I4NjkyNDViMzlmNzU0NzZkNWNhZTU2MDA=";
+
+    fetch("https://accounts.spotify.com/api/token", {
+      method: "POST",
+      headers: {
+        "Authorization": authHeader,
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      body: new URLSearchParams({
+        grant_type: "authorization_code",
+        code: code,
+        redirect_uri: redirectUri
+      })
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log("REFRESH TOKEN:", data.refresh_token);
+        alert("Check console for your REFRESH TOKEN.");
+        console.log(data);
+      })
+      .catch(err => console.error("ERROR:", err));
+  </script>
+</body>
+</html>
