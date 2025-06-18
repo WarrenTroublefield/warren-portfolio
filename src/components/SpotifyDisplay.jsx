@@ -1,45 +1,41 @@
-
+// src/components/SpotifyDisplay.jsx
 import React, { useEffect, useState } from "react";
 import { FaSpotify } from "react-icons/fa";
 
-const SpotifyDisplay = () => {
+export default function SpotifyDisplay() {
   const [track, setTrack] = useState(null);
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    const fetchNowPlaying = async () => {
-      try {
-        const res = await fetch("/api/spotify");
-        const data = await res.json();
+    fetch("/api/spotify")
+      .then((res) => {
+        if (!res.ok) throw new Error("Spotify fetch failed");
+        return res.json();
+      })
+      .then((data) => {
         setTrack(data);
-      } catch (error) {
-        console.error("Failed to fetch Spotify data", error);
-      }
-    };
-
-    fetchNowPlaying();
-    const interval = setInterval(fetchNowPlaying, 10000);
-    return () => clearInterval(interval);
+      })
+      .catch((err) => setError(err.message));
   }, []);
 
+  if (error)
+    return <p className="text-red-500">Error loading Spotify: {error}</p>;
+
+  if (!track)
+    return <p>🎧 Fetching Spotify data...</p>;
+
+  if (!track.isPlaying)
+    return <p>🎧 Not playing anything right now.</p>;
+
   return (
-    <div className="bg-zinc-100 dark:bg-zinc-800 p-4 rounded-lg shadow-md">
-      <div className="flex items-center space-x-4">
-        <FaSpotify className="text-green-500 text-2xl" />
-        {track && track.isPlaying ? (
-          <div>
-            <div className="font-semibold">{track.title}</div>
-            <div className="text-sm text-zinc-500 dark:text-zinc-400">
-              {track.artist}
-            </div>
-          </div>
-        ) : (
-          <div className="text-sm text-zinc-500 dark:text-zinc-400">
-            Not playing anything right now.
-          </div>
-        )}
+    <div className="flex items-center space-x-4">
+      <FaSpotify className="text-green-500 text-2xl" />
+      <div>
+        <p className="font-semibold">{track.title}</p>
+        <p className="text-sm text-gray-600 dark:text-gray-400">
+          {track.artists.join(", ")}
+        </p>
       </div>
     </div>
   );
-};
-
-export default SpotifyDisplay;
+}
