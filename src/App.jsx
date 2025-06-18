@@ -1,42 +1,61 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import Callback from "./Callback";
+import NavBar from "./components/NavBar";
+import Intro from "./components/Intro";
+import About from "./components/About";
+import Experience from "./components/Experience";
+import Gallery from "./components/Gallery";
+import Projects from "./components/Projects";
+import Footer from "./components/Footer";
+import SpotifyDisplay from "./components/SpotifyDisplay";
 import YouTubeWidget from "./components/YouTubeWidget";
-import SpotifyNowPlaying from "./components/SpotifyNowPlaying";
-import Callback from './pages/callback';
 
 function Home() {
   return (
-    <div className="min-h-screen p-6 text-zinc-900 dark:text-white bg-white dark:bg-black font-sans max-w-3xl mx-auto">
-      <h1 className="text-3xl font-bold mb-4">Hi, I'm Warren</h1>
-      <p className="mb-8">
-        I'm an aspiring Software Engineer and Information Security Analyst who’s passionate about ethical hacking, full-stack development, and building secure systems that solve real-world problems. I enjoy learning how technology works under the hood — and how to protect it.
-      </p>
+    <div className="text-zinc-900 dark:text-white bg-white dark:bg-black font-sans max-w-3xl mx-auto px-6">
+      <Intro
+        name="Warren Troublefield"
+        description="I'm a Software Engineer and Information Security Analyst who’s passionate about ethical hacking, full-stack development, and building secure systems that solve real-world problems. I enjoy understanding how technology works under the hood — and how to defend it."
+      />
 
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold mb-2">📺 Latest Video</h2>
+      <About />
+
+      <Experience />
+
+      <Gallery />
+
+      <Projects
+        projects={[
+          {
+            title: "Secure File Transfer App",
+            description: "A tool designed to securely send and receive files over encrypted connections.",
+            url: "https://github.com/WarrenTroublefield/secure-file-transfer",
+          },
+          {
+            title: "Network Scanner Tool",
+            description: "A command-line utility to scan local networks and detect connected devices.",
+            url: "https://github.com/WarrenTroublefield/network-scanner-tool",
+          },
+        ]}
+      />
+
+      <section className="my-10">
+        <h2 className="text-2xl font-semibold mb-4">🎧 Now Playing on Spotify</h2>
+        <SpotifyDisplay />
+      </section>
+
+      <section className="my-10">
+        <h2 className="text-2xl font-semibold mb-4">📺 Latest YouTube Video</h2>
         <YouTubeWidget />
       </section>
 
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold mb-2">🎧 Now Playing</h2>
-        <SpotifyNowPlaying />
-      </section>
-
-      <section>
-        <h2 className="text-xl font-semibold mb-2">Contact</h2>
-        <p>
-          <a href="mailto:swegmoneylife@gmail.com" className="text-blue-600 dark:text-blue-400 hover:underline">
-            Email
-          </a>{" "}
-          ·{" "}
-          <a
-            href="https://www.linkedin.com/in/warren-troublefield"
-            className="text-blue-600 dark:text-blue-400 hover:underline ml-1"
-          >
-            LinkedIn
-          </a>
-        </p>
-      </section>
+      <Footer
+        email="swegmoneylife@gmail.com"
+        linkedin="https://www.linkedin.com/in/warren-troublefield"
+        resume="/Warren Troublefield Resume.pdf"
+      />
     </div>
   );
 }
@@ -44,6 +63,7 @@ function Home() {
 function App() {
   return (
     <Router>
+      <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/callback" element={<Callback />} />
