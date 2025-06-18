@@ -1,66 +1,33 @@
-import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
 
 const NavBar = () => {
   const [isDark, setIsDark] = useState(false);
-  const location = useLocation();
 
   useEffect(() => {
-    const root = window.document.documentElement;
-    const initialTheme = localStorage.getItem("theme") || "light";
-    root.classList.toggle("dark", initialTheme === "dark");
-    setIsDark(initialTheme === "dark");
-  }, []);
-
-  const toggleTheme = () => {
-    const root = window.document.documentElement;
-    const newTheme = isDark ? "light" : "dark";
-    root.classList.toggle("dark", newTheme === "dark");
-    localStorage.setItem("theme", newTheme);
-    setIsDark(!isDark);
-  };
-
-  const navItems = [
-    { label: "Home", path: "/" },
-    { label: "About", anchor: "#about" },
-    { label: "Projects", anchor: "#projects" },
-    { label: "Contact", anchor: "#contact" },
-  ];
+    const root = document.documentElement;
+    if (isDark) {
+      root.classList.add('dark');
+    } else {
+      root.classList.remove('dark');
+    }
+  }, [isDark]);
 
   return (
-    <nav className="flex justify-between items-center py-4 mb-8 border-b border-zinc-200 dark:border-zinc-700">
-      <Link to="/" className="text-lg font-semibold text-zinc-900 dark:text-white">
-        Warren Troublefield
-      </Link>
-      <div className="flex items-center space-x-4">
-        {navItems.map((item) =>
-          item.path ? (
-            <Link
-              key={item.label}
-              to={item.path}
-              className={`text-sm text-zinc-600 dark:text-zinc-300 hover:underline ${
-                location.pathname === item.path ? "font-bold" : ""
-              }`}
-            >
-              {item.label}
-            </Link>
-          ) : (
-            <a
-              key={item.label}
-              href={item.anchor}
-              className="text-sm text-zinc-600 dark:text-zinc-300 hover:underline"
-            >
-              {item.label}
-            </a>
-          )
-        )}
-        <button
-          onClick={toggleTheme}
-          className="rounded px-2 py-1 border border-zinc-300 dark:border-zinc-600 text-sm text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800"
-        >
-          {isDark ? "☀️" : "🌙"}
-        </button>
+    <nav className="w-full px-6 py-4 flex justify-between items-center text-sm text-gray-900 dark:text-white bg-white dark:bg-black shadow">
+      <div className="font-semibold">Warren Troublefield</div>
+      <div className="space-x-6 hidden sm:block">
+        <a href="#home" className="hover:underline">Home</a>
+        <a href="#about" className="hover:underline">About</a>
+        <a href="#projects" className="hover:underline">Projects</a>
+        <a href="#contact" className="hover:underline">Contact</a>
       </div>
+      <button
+        onClick={() => setIsDark(!isDark)}
+        className="ml-4 focus:outline-none text-lg"
+        aria-label="Toggle Dark Mode"
+      >
+        {isDark ? '🌙' : '🌞'}
+      </button>
     </nav>
   );
 };
