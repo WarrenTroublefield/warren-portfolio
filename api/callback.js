@@ -1,41 +1,43 @@
 export default async function handler(req, res) {
   const code = req.query.code || null;
-  const state = req.query.state || null;
 
   if (!code) {
-    return res.status(400).json({ error: 'Missing authorization code.' });
+    return res.status(400).json({ error: 'No code provided in callback' });
   }
 
   const client_id = 'ba8105e9eca94c089a6922df46ad2ad5';
   const client_secret = '889624cb869245b39f75476d5cae5600';
   const redirect_uri = 'https://warren-portfolio-eu71.vercel.app/api/callback';
 
-  const params = new URLSearchParams();
-  params.append('grant_type', 'authorization_code');
-  params.append('code', code);
-  params.append('redirect_uri', redirect_uri);
-
-  const token = Buffer.from(`${client_id}:${client_secret}`).toString('base64');
+  const authBuffer = Buffer.from(`${client_id}:${client_secret}`).toString('base64');
 
   try {
-    const response = await fetch('https://accounts.spotify.com/api/token', {
+    const tokenResponse = await fetch('https://accounts.spotify.com/api/token', {
       method: 'POST',
       headers: {
-        Authorization: `Basic ${token}`,
+        Authorization: `Basic ${authBuffer}`,
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: params,
+      body: new URLSearchParams({
+        grant_type: 'authorization_code',
+        code,
+        redirect_uri,
+      }),
     });
 
-    const data = await response.json();
+    const data = await tokenResponse.json();
 
     if (data.error) {
-      return res.status(400).json({ error: data.error });
+      return res.status(400).json({ error: data.error_description });
     }
 
-    // Optional: Redirect user back to the homepage
-    return res.redirect('/');
+    console.log('REFRESH TOKEN:', data.refresh_token);
+    return res.status(200).json({
+      access_token: data.access_token,
+      refresh_token: data.refresh_token,
+      expires_in: data.expires_in,
+    });
   } catch (err) {
-    return res.status(500).json({ error: 'Internal server error' });
+    return res.status(500).json({ error: 'Internal server error', details: err });
   }
 }
