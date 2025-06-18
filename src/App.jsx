@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import YouTubeWidget from "./components/YouTubeWidget";
 import SpotifyNowPlaying from "./components/SpotifyNowPlaying";
-import Callback from "./Callback";
+import Callback from './pages/callback';
 
 function Home() {
   return (
