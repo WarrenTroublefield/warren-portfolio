@@ -1,33 +1,19 @@
 import React from "react";
 
-const Footer = ({ email, linkedin, resume }) => {
+const Footer = () => {
   return (
-    <footer className="py-10 text-center text-sm text-zinc-600 dark:text-zinc-400">
-      <div className="space-x-4">
+    <footer className="mt-12 text-sm text-center text-zinc-500 dark:text-zinc-400">
+      <p>
+        Built by Warren Troublefield —{' '}
         <a
-          href={`mailto:${email}`}
-          className="hover:underline text-blue-600 dark:text-blue-400"
-        >
-          Email
-        </a>
-        <a
-          href={linkedin}
+          href="https://github.com/WarrenTroublefield"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:underline text-blue-600 dark:text-blue-400"
         >
-          LinkedIn
+          @WarrenTroublefield
         </a>
-        <a
-          href={resume}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:underline text-blue-600 dark:text-blue-400"
-        >
-          Resume
-        </a>
-      </div>
-      <p className="mt-4">&copy; {new Date().getFullYear()} Warren Troublefield</p>
+      </p>
     </footer>
   );
 };
