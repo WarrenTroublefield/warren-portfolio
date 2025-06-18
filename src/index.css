@@ -5,3 +5,8 @@
 body {
   font-family: 'Inter', sans-serif;
 }
+
+html.dark {
+  background-color: #000;
+  color: #fff;
+}
